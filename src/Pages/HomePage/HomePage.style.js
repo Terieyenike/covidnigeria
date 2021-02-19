@@ -44,8 +44,9 @@ export const Grid = styled.div`
   }
 `;
 
-// export const Loading = styled.h2`
-//   display: grid;
-//   place-items: center;
-//   min-height: 50vh;
-// `;
+export const Loading = styled.h2`
+  display: grid;
+  place-items: center;
+  min-height: 50vh;
+  font-size: 1.5rem;
+`;

@@ -1,58 +1,76 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import Container from './components/Container';
+import { connect } from 'react-redux';
+import { fetchResults, fetchData, setSearchField } from './actions/dataActions';
+
+import { Loading } from './Pages/HomePage/HomePage.style';
+
 import Navbar from './components/NavBar/Navbar';
 import HomePage from './Pages/HomePage/HomePage';
-import Pagination from './components/Pagination/Pagination';
 import Stats from './components/Stats/Stats';
 
-const App = () => {
-  const [profiles, setProfiles] = useState([]);
-  const [stats, setStats] = useState({});
-  const [searchProfile, setSearchProfile] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [profilesPerPage] = useState(20);
-
+const App = ({ dispatch, results, loading, hasErrors, data, searchField }) => {
   useEffect(() => {
-    fetchProfiles();
-  }, []);
+    dispatch(fetchResults());
+    dispatch(fetchData());
+  }, [dispatch]);
 
-  const fetchProfiles = async () => {
-    let url = 'https://covidnigeria.herokuapp.com/api';
-    const res = await fetch(url);
-    const data = await res.json();
-    setProfiles(data.data.states);
-    setStats(data.data);
-    setLoading(false);
+  const searchCovidNigeria = (e) => {
+    dispatch(setSearchField(e.target.value));
   };
 
-  // change page - pagination
-  const indexOfLastProfile = currentPage * profilesPerPage;
-  const indexOfFirstProfile = indexOfLastProfile - profilesPerPage;
+  const filterStates = results.filter((result) => {
+    return result.state.toLowerCase().includes(searchField.toLowerCase());
+  });
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const searchProfiles = (e) => {
-    setSearchProfile(e.target.value);
+  const renderResults = () => {
+    if (loading) {
+      return (
+        <Container>
+          <Loading>Loading results. Please wait</Loading>
+        </Container>
+      );
+    }
+    if (hasErrors)
+      return (
+        <Container>
+          <Loading>Unable to display covid data in Nigeria</Loading>
+        </Container>
+      );
+    return <HomePage results={filterStates} />;
   };
 
-  const filteredProfiles = profiles
-    .slice(indexOfFirstProfile, indexOfLastProfile)
-    .filter((profile) =>
-      profile.state.toLowerCase().includes(searchProfile.toLowerCase())
-    );
+  const renderData = () => {
+    if (loading) {
+      return (
+        <Container>
+          <p>Loading</p>
+        </Container>
+      );
+    }
+    if (hasErrors) {
+      return <Container>No displayed data</Container>;
+    }
+    return <Stats stats={data} />;
+  };
 
   return (
     <>
-      <Navbar handleChange={searchProfiles} value={searchProfile} />
-      <Stats stats={stats} />
-      <HomePage filteredProfiles={filteredProfiles} loading={loading} />
-      <Pagination
-        profilesPerPage={profilesPerPage}
-        totalProfiles={profiles.length}
-        paginate={paginate}
-      />
+      <Navbar handleChange={searchCovidNigeria} />
+      {renderData()}
+      {renderResults()}
     </>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  loading: state.results.loading,
+  results: state.results.results,
+  hasErrors: state.results.hasErrors,
+  loaded: state.data.loaded,
+  data: state.data.data,
+  Errors: state.data.Errors,
+  searchField: state.text.searchField,
+});
+
+export default connect(mapStateToProps)(App);

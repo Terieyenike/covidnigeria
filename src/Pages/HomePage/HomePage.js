@@ -1,39 +1,25 @@
-import {
-  Section,
-  Bg,
-  H1,
-  Grid,
-  P,
-  // Loading,
-} from './HomePage.style';
+import { Section, Bg, H1, Grid, P } from './HomePage.style';
 import Container from '../../components/Container';
 
-const HomePage = ({ filteredProfiles }) => {
-  // if (loading) {
-  //   return (
-  //     <Container>
-  //       <Loading>Loading...Please wait</Loading>
-  //     </Container>
-  //   );
-  // }
+const HomePage = ({ results }) => {
   return (
     <Section>
       <Container>
         <Grid>
-          {filteredProfiles.map((profile, id) => (
+          {results.map((result, id) => (
             <Bg key={id} className='box'>
-              <H1>{profile.state}</H1>
+              <H1>{result.state}</H1>
               <P>
-                Confirmed cases: <span>{profile.confirmedCases}</span>
+                Confirmed cases: <span>{result.confirmedCases}</span>
               </P>
               <P>
-                Cases on Admission:<span>{profile.casesOnAdmission}</span>
+                Cases on Admission:<span>{result.casesOnAdmission}</span>
               </P>
               <P>
-                Discharged: <span>{profile.discharged}</span>
+                Discharged: <span>{result.discharged}</span>
               </P>
               <P>
-                Death: <span>{profile.death}</span>
+                Death: <span>{result.death}</span>
               </P>
             </Bg>
           ))}
