@@ -6,7 +6,8 @@ App hosted/deployed on [Vercel](https://covidnigeria-terieyenike.vercel.app/)
 
 ![Covid Nigeria](https://user-images.githubusercontent.com/25850598/110860890-a4307100-82bd-11eb-9832-787e8e65fc76.png)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/953dfbcc-c13f-4950-a030-040cf46c4871/deploy-status)](https://app.netlify.com/sites/enye-teri/deploys)
+## Performance Report using Lighthouse
+![Performance report](https://user-images.githubusercontent.com/25850598/110861991-35541780-82bf-11eb-81fb-59e93191a7ea.png)
 
 ## ⚒ Installation & Set Up
 
