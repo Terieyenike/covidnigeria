@@ -1,10 +1,10 @@
-## E-commerce transaction details
+## Covid Nigeria Stats
 
-Profile front-end application using an e-commerce transaction details from its [API](https://api.enye.tech/v1/challenge/records).
+Profile front-end application using a covidnigeria [API](https://covidnigeria.herokuapp.com/api).
 
-App hosted/deployed on [Netlify](https://enye-teri.netlify.app/)
+App hosted/deployed on [Vercel](https://covidnigeria-terieyenike.vercel.app/)
 
-![image](https://user-images.githubusercontent.com/25850598/105642404-c5620d00-5e89-11eb-9f1d-57eb7ff1dc8e.png)
+![Covid Nigeria](https://user-images.githubusercontent.com/25850598/110860890-a4307100-82bd-11eb-9832-787e8e65fc76.png)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dfbcc-c13f-4950-a030-040cf46c4871/deploy-status)](https://app.netlify.com/sites/enye-teri/deploys)
 
@@ -46,6 +46,7 @@ npm run serve
 ## Tech stack used for build
 
 - React
+- Redux (state management)
 
 ## Packages
 
