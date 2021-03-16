@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render the Navbar component 1`] = `
+<section
+  className="sc-bdfBwQ NzFpA"
+>
+  <div
+    className="sc-dlfnbm ivSpyO"
+  >
+    <div
+      className="sc-gsTCUz bGCMpA"
+    >
+      <h1>
+        Covid-19 in Nigeria
+      </h1>
+      <input
+        aria-label="Search"
+        placeholder="Search by states"
+      />
+    </div>
+  </div>
+</section>
+`;
