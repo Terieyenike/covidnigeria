@@ -1,7 +1,10 @@
-import { shallow } from 'enzyme';
+// import { shallow } from 'enzyme';
+import { create } from 'react-test-renderer';
 import React from 'react';
 import Navbar from './Navbar';
 
-it('expect to render the Stats component', () => {
-  expect(shallow(<Navbar />).length).toEqual(1);
+const navbar = create(<Navbar />);
+
+it('expect to render the Navbar component', () => {
+  expect(navbar.toJSON()).toMatchSnapshot();
 });
