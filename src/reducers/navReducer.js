@@ -7,7 +7,7 @@ export const initialState = {
 export default function navDetails (state = initialState, action) {
   switch (action.type) {
     case actions.NAV_DETAIL:
-      return {...state, detail: state.detail}
+      return {...state}
     default:
       return state
   }
