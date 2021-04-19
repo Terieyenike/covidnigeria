@@ -1,7 +1,12 @@
 import { useEffect } from 'react';
 import Container from './components/Container';
 import { connect } from 'react-redux';
-import { fetchResults, fetchData, setSearchField } from './actions/dataActions';
+import {
+  fetchResults,
+  fetchData,
+  setSearchField,
+  fetchDetail,
+} from './actions/dataActions';
 
 import { Loading } from './Pages/HomePage/HomePage.style';
 
@@ -9,10 +14,11 @@ import Navbar from './components/NavBar/Navbar';
 import HomePage from './Pages/HomePage/HomePage';
 import Stats from './components/Stats/Stats';
 
-const App = ({ dispatch, results, loading, hasErrors, data, searchField }) => {
+const App = ({ dispatch, results, loading, hasErrors, data, searchField, detail }) => {
   useEffect(() => {
     dispatch(fetchResults());
     dispatch(fetchData());
+    dispatch(fetchDetail());
   }, [dispatch]);
 
   const searchCovidNigeria = (e) => {
@@ -22,6 +28,8 @@ const App = ({ dispatch, results, loading, hasErrors, data, searchField }) => {
   const filterStates = results.filter((result) => {
     return result.state.toLowerCase().includes(searchField.toLowerCase());
   });
+
+
 
   const renderResults = () => {
     if (loading) {
@@ -56,7 +64,7 @@ const App = ({ dispatch, results, loading, hasErrors, data, searchField }) => {
 
   return (
     <>
-      <Navbar handleChange={searchCovidNigeria} />
+      <Navbar covid={detail} handleChange={searchCovidNigeria} />
       {renderData()}
       {renderResults()}
     </>
@@ -71,6 +79,7 @@ const mapStateToProps = (state) => ({
   data: state.data.data,
   Errors: state.data.Errors,
   searchField: state.text.searchField,
+  detail: state.header.detail
 });
 
 export default connect(mapStateToProps)(App);

@@ -3,10 +3,16 @@ export const GET_INFO_SUCCESS = 'GET_INFO_SUCCESS';
 export const GET_INFO_FAILURE = 'GET_INFO_FAILURE';
 export const CHANGE_SEARCH_FIELD = 'CHANGE_SEARCH_FIELD';
 
+// stats
 export const DATA_INFO = 'DATA_INFO';
 export const DATA_INFO_SUCCESS = 'DATA_INFO_SUCCESS';
 export const DATA_INFO_FAILURE = 'DATA_INFO_FAILURE';
 
+// nav header detail
+export const NAV_DETAIL = 'NAV_DETAIL'
+
+
+// action creators
 export const getInfo = () => ({
   type: GET_INFO,
 });
@@ -38,6 +44,11 @@ export const getDataFailure = () => ({
   type: DATA_INFO_FAILURE,
 });
 
+export const fetchDetail = () => ({
+  type: NAV_DETAIL
+})
+
+// asynchronous thunk
 export function fetchResults() {
   return async (dispatch) => {
     dispatch(getInfo());
